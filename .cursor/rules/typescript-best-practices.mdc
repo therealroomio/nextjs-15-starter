@@ -1,0 +1,14 @@
+---
+name: typescript-best-practices.mdc
+description: TypeScript coding standards and type safety guidelines
+globs: **/*.{ts,tsx}
+---
+
+- Enable strict mode in your `tsconfig.json` for better type checking
+- Use type inference where possible to reduce unnecessary type annotations
+- Prefer union types over enums for better flexibility
+- Utilize generics for reusable components and functions
+- Implement proper error handling with custom error types
+- Use discriminated unions for complex state management
+- Avoid using `any` type unless absolutely necessary
+- Leverage TypeScript's utility types for common transformations 

@@ -1,0 +1,12 @@
+---
+description: Best practices for using MDX with next-mdx-remote
+globs: **/*.{ts,tsx,mdx}
+---
+- Use `serialize` function to process MDX content on the server
+- Implement proper error handling for invalid MDX
+- Utilize `MDXRemote` component for rendering MDX content
+- Keep MDX components organized and reusable across your application
+- Implement proper syntax highlighting for code blocks
+- Use proper frontmatter handling
+- Create custom components for common MDX patterns
+- Handle image optimization in MDX content 

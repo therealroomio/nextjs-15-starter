@@ -1,0 +1,14 @@
+---
+name: zustand-best-practices.mdc
+description: Best practices for state management with Zustand
+globs: **/*.{ts,tsx}
+---
+
+- Keep stores focused on specific domains or features
+- Use middleware like `persist` for local storage integration
+- Implement proper type safety using TypeScript
+- Avoid overusing global state; prefer component-level state when possible
+- Use selectors for optimal performance
+- Implement proper error handling in store actions
+- Keep store actions pure and predictable
+- Use devtools middleware during development 

@@ -1,0 +1,14 @@
+---
+name: zod-best-practices.mdc
+description: Best practices for schema validation with Zod
+globs: **/*.{ts,tsx}
+---
+
+- Define schemas for all incoming data and API responses
+- Use Zod's type inference to generate TypeScript types automatically
+- Implement custom error messages for better user feedback
+- Utilize Zod's built-in validation methods for complex data structures
+- Create reusable schema components for common patterns
+- Implement proper error handling for validation failures
+- Use schema refinements for complex validation rules
+- Keep schemas organized and maintainable 

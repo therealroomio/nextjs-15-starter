@@ -1,0 +1,8 @@
+---
+description: Best practices for making HTTP requests with Axios
+globs:  **/*.{ts,tsx,js,jsx}
+---
+- Use interceptors for global request/response handling
+- Implement proper error handling and retries for failed requests
+- Utilize Axios' cancel token feature for aborting requests
+- Set appropriate timeouts for different types of requests

@@ -1,0 +1,9 @@
+---
+description:  Guidelines for using Shadcn UI components in Next.js projects
+globs: **/*.{ts,tsx}
+---
+- Follow Shadcn UI's component structure and naming conventions
+- Customize components using the provided props and slots
+- Extend Shadcn UI components with your own styles using Tailwind classes
+- Use Shadcn UI's dark mode variants for consistent theming
+- Implement accessibility features provided by Shadcn UI components

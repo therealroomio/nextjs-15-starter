@@ -1,0 +1,14 @@
+---
+name: tailwindcss-best-practices.mdc
+description: Best practices for using Tailwind CSS
+globs: **/*.{ts,tsx,css}
+---
+
+- Use utility-first approach for styling components
+- Create custom components for frequently used styles
+- Utilize responsive design utilities for different screen sizes
+- Keep your `tailwind.config.js` organized and maintainable
+- Use @apply directives sparingly and only for reusable styles
+- Implement proper dark mode support using Tailwind's dark: variant
+- Follow mobile-first design principles
+- Use arbitrary values only when necessary 

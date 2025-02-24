@@ -1,0 +1,12 @@
+---
+description: Best practices for using Radix UI components
+globs: **/*.{ts,tsx}
+---
+- Follow Radix UI's accessibility guidelines for all components
+- Use Radix primitives as building blocks for custom components
+- Implement proper state management for interactive components
+- Utilize Radix UI's styling API for consistent theming
+- Ensure proper keyboard navigation support
+- Use proper ARIA attributes and roles
+- Implement proper focus management
+- Handle component composition patterns effectively 
