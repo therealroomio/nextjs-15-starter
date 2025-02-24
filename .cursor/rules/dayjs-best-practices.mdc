@@ -1,8 +1,14 @@
 ---
+name: dayjs-best-practices.mdc
 description: Best practices for date and time manipulation with Day.js
 globs: **/*.{ts,tsx,js,jsx}
 ---
+
 - Use Day.js plugins for additional functionality (e.g., timezone support)
 - Implement proper locale handling for internationalization
 - Utilize Day.js' formatting options for consistent date display
 - Avoid mutating dates directly; use Day.js' immutable methods
+- Create utility functions for common date operations
+- Handle timezone conversions properly
+- Use proper date parsing for user inputs
+- Implement consistent date formatting across the application 

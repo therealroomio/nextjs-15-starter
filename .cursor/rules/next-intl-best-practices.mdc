@@ -1,8 +1,14 @@
 ---
-description:  Best practices for internationalization with next-intl
+name: next-intl-best-practices.mdc
+description: Best practices for internationalization with next-intl
 globs: **/*.{ts,tsx}
 ---
+
 - Use the `useTranslations` hook for component-level translations
 - Implement proper fallback locales for missing translations
 - Utilize next-intl's formatting utilities for numbers, dates, and currencies
 - Keep translation files organized and maintainable
+- Use proper message formatting with ICU syntax
+- Implement proper locale detection and switching
+- Handle pluralization and gender rules correctly
+- Create reusable translation components for common patterns 
