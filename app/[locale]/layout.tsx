@@ -1,92 +1,126 @@
-import BaiDuAnalytics from "@/app/BaiDuAnalytics";
-import GoogleAdsense from "@/app/GoogleAdsense";
-import GoogleAnalytics from "@/app/GoogleAnalytics";
 import Footer from "@/components/footer/Footer";
 import Header from "@/components/header/Header";
-import { LanguageDetectionAlert } from "@/components/LanguageDetectionAlert";
 import { TailwindIndicator } from "@/components/TailwindIndicator";
+import { ThemeProvider } from "@/components/theme-provider";
+import { Toaster } from "@/components/ui/toaster";
 import { siteConfig } from "@/config/site";
-import { DEFAULT_LOCALE, Locale, routing } from "@/i18n/routing";
-import { constructMetadata } from "@/lib/metadata";
-import { cn } from "@/lib/utils";
+import { getMessages } from "@/i18n";
 import "@/styles/globals.css";
-import "@/styles/loading.css";
 import { Analytics } from "@vercel/analytics/react";
-import { Metadata, Viewport } from "next";
+import { Metadata } from "next";
 import { NextIntlClientProvider } from "next-intl";
-import { getMessages, getTranslations } from "next-intl/server";
-import { ThemeProvider } from "next-themes";
+import { Montserrat, Playfair_Display } from 'next/font/google';
 import { notFound } from "next/navigation";
+import BaiDuAnalytics from "../BaiDuAnalytics";
+import GoogleAdsense from "../GoogleAdsense";
+import GoogleAnalytics from "../GoogleAnalytics";
 
-type MetadataProps = {
-  params: Promise<{ locale: string }>;
+const montserrat = Montserrat({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-montserrat',
+});
+
+const playfair = Playfair_Display({
+  subsets: ['latin'],
+  display: 'swap',
+  variable: '--font-playfair',
+});
+
+export const metadata: Metadata = {
+  metadataBase: new URL(siteConfig.url),
+  title: {
+    default: siteConfig.name,
+    template: `%s | ${siteConfig.name}`,
+  },
+  description: siteConfig.description,
+  keywords: siteConfig.keywords,
+  authors: siteConfig.authors,
+  creator: siteConfig.creator,
+  openGraph: {
+    type: "website",
+    locale: "en_US",
+    url: siteConfig.url,
+    title: siteConfig.name,
+    description: siteConfig.description,
+    siteName: siteConfig.name,
+    images: [
+      {
+        url: siteConfig.ogImage,
+        width: 1200,
+        height: 630,
+        alt: siteConfig.name,
+      },
+    ],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: siteConfig.name,
+    description: siteConfig.description,
+    creator: siteConfig.creator,
+    images: [siteConfig.ogImage],
+  },
+  icons: siteConfig.icons,
+  manifest: siteConfig.manifest,
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      "max-video-preview": -1,
+      "max-image-preview": "large",
+      "max-snippet": -1,
+    },
+  },
+  verification: {
+    google: process.env.NEXT_PUBLIC_GOOGLE_VERIFICATION,
+  },
 };
 
-export async function generateMetadata({
-  params,
-}: MetadataProps): Promise<Metadata> {
-  const { locale } = await params;
-  const t = await getTranslations({ locale, namespace: "Home" });
-
-  return constructMetadata({
-    page: "Home",
-    title: t("title"),
-    description: t("description"),
-    locale: locale as Locale,
-    path: `/`,
-    // canonicalUrl: `/blogs/${slug}`,
-  });
-}
-
-export const viewport: Viewport = {
+export const viewport = {
   themeColor: siteConfig.themeColors,
 };
 
-export default async function LocaleLayout({
+export default async function RootLayout({
   children,
   params,
 }: {
   children: React.ReactNode;
-  params: { locale: string };
+  params: Promise<{ locale: string }>;
 }) {
   const { locale } = await params;
-
-  // Ensure that the incoming `locale` is valid
-  if (!routing.locales.includes(locale as any)) {
+  let messages;
+  try {
+    messages = await getMessages(locale);
+  } catch (error) {
     notFound();
   }
 
-  // Providing all messages to the client
-  // side is the easiest way to get started
-  const messages = await getMessages();
-
   return (
-    <html lang={locale || DEFAULT_LOCALE} suppressHydrationWarning>
-      <head />
-      <body className={cn("min-h-screen bg-background font-sans antialiased")}>
+    <html lang={locale} suppressHydrationWarning>
+      <head>
+        <GoogleAnalytics />
+        <BaiDuAnalytics />
+        <GoogleAdsense />
+      </head>
+      <body className={`${montserrat.variable} ${playfair.variable} font-montserrat min-h-screen bg-background antialiased`}>
         <NextIntlClientProvider messages={messages}>
           <ThemeProvider
             attribute="class"
             defaultTheme={siteConfig.defaultNextTheme}
             enableSystem
           >
-            <LanguageDetectionAlert />
-            <Header />
-            <main className="flex flex-col items-center py-6">{children}</main>
-            <Footer />
-            <Analytics />
+            <div className="relative flex min-h-screen flex-col">
+              <Header />
+              <main className="flex-1">{children}</main>
+              <Footer />
+            </div>
             <TailwindIndicator />
+            <Toaster />
           </ThemeProvider>
         </NextIntlClientProvider>
-        {process.env.NODE_ENV === "development" ? (
-          <></>
-        ) : (
-          <>
-            <BaiDuAnalytics />
-            <GoogleAnalytics />
-            <GoogleAdsense />
-          </>
-        )}
+        <Analytics />
       </body>
     </html>
   );

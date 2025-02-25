@@ -2,13 +2,16 @@ import { headerLinks } from "@/components/header/HeaderLinks";
 import LocaleSwitcher from "@/components/LocaleSwitcher";
 import { ThemeToggle } from "@/components/ThemeToggle";
 import {
-  DropdownMenu,
-  DropdownMenuContent,
-  DropdownMenuGroup,
-  DropdownMenuItem,
-  DropdownMenuLabel,
-  DropdownMenuSeparator,
-  DropdownMenuTrigger,
+    DropdownMenu,
+    DropdownMenuContent,
+    DropdownMenuGroup,
+    DropdownMenuItem,
+    DropdownMenuLabel,
+    DropdownMenuSeparator,
+    DropdownMenuSub,
+    DropdownMenuSubContent,
+    DropdownMenuSubTrigger,
+    DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu";
 import { siteConfig } from "@/config/site";
 import { Link as I18nLink } from "@/i18n/routing";
@@ -25,7 +28,7 @@ export default function MobileMenu() {
         <DropdownMenuTrigger className="p-2">
           <Menu className="h-5 w-5" />
         </DropdownMenuTrigger>
-        <DropdownMenuContent align="end">
+        <DropdownMenuContent align="end" className="w-64">
           <DropdownMenuLabel>
             <I18nLink
               href="/"
@@ -46,11 +49,33 @@ export default function MobileMenu() {
           <DropdownMenuSeparator />
           <DropdownMenuGroup>
             {headerLinks.map((link) => (
-              <DropdownMenuItem key={link.name}>
-                <I18nLink href={link.href} title={tHeader(link.name)}>
-                  {tHeader(link.name)}
-                </I18nLink>
-              </DropdownMenuItem>
+              link.children ? (
+                <DropdownMenuSub key={link.name}>
+                  <DropdownMenuSubTrigger className="capitalize">
+                    {link.name}
+                  </DropdownMenuSubTrigger>
+                  <DropdownMenuSubContent>
+                    <DropdownMenuItem asChild>
+                      <I18nLink href={link.href} className="w-full">
+                        All Services
+                      </I18nLink>
+                    </DropdownMenuItem>
+                    {link.children.map((child) => (
+                      <DropdownMenuItem key={child.name} asChild>
+                        <I18nLink href={child.href} className="w-full">
+                          {child.name}
+                        </I18nLink>
+                      </DropdownMenuItem>
+                    ))}
+                  </DropdownMenuSubContent>
+                </DropdownMenuSub>
+              ) : (
+                <DropdownMenuItem key={link.name} asChild>
+                  <I18nLink href={link.href} className="capitalize">
+                    {link.name}
+                  </I18nLink>
+                </DropdownMenuItem>
+              )
             ))}
           </DropdownMenuGroup>
           <DropdownMenuSeparator />

@@ -6,6 +6,7 @@ import { constructMetadata } from "@/lib/metadata";
 import { BlogPost } from "@/types/blog";
 import { Metadata } from "next";
 import { MDXRemote } from "next-mdx-remote/rsc";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 type Params = Promise<{
@@ -59,7 +60,13 @@ export default async function BlogPage({ params }: { params: Params }) {
     <div className="w-full md:w-3/5 px-2 md:px-12">
       <h1 className="break-words text-4xl font-bold mt-6 mb-4">{post.title}</h1>
       {post.image && (
-        <img src={post.image} alt={post.title} className="rounded-sm" />
+        <Image
+          src={post.image}
+          alt={post.title}
+          width={800}
+          height={400}
+          className="rounded-sm w-full h-auto"
+        />
       )}
       {post.tags && post.tags.split(",").length ? (
         <div className="flex flex-wrap gap-2">
@@ -67,7 +74,7 @@ export default async function BlogPage({ params }: { params: Params }) {
             return (
               <div
                 key={tag}
-                className={`rounded-md bg-gray-200 hover:!no-underline dark:bg-[#24272E] flex px-2.5 py-1.5 text-sm font-medium transition-colors hover:text-black hover:dark:bg-[#15AFD04C] hover:dark:text-[#82E9FF] text-gray-500 dark:text-[#7F818C] outline-none focus-visible:ring transition`}
+                className={`rounded-md bg-gray-200 hover:!no-underline dark:bg-[#24272E] flex px-2.5 py-1.5 text-sm font-medium hover:text-black hover:dark:bg-[#15AFD04C] hover:dark:text-[#82E9FF] text-gray-500 dark:text-[#7F818C] outline-none focus-visible:ring transition`}
               >
                 {tag.trim()}
               </div>

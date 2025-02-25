@@ -1,63 +1,127 @@
-import WebsiteLogo from "@/components/WebsiteLogo";
+import { Button } from "@/components/ui/button";
+import { Card } from "@/components/ui/card";
 import { useTranslations } from "next-intl";
+import Link from "next/link";
 
 export default function HomeComponent() {
   const t = useTranslations("Home");
 
+  const services = [
+    {
+      title: "Botox",
+      description: "Reduce fine lines and wrinkles with our premium Botox treatments",
+      href: "/services/botox",
+      icon: "✨"
+    },
+    {
+      title: "Skin Treatment",
+      description: "Revitalize your skin with our advanced skincare solutions",
+      href: "/services/skin-treatment",
+      icon: "🌟"
+    },
+    {
+      title: "Body Contouring",
+      description: "Sculpt and define your body with non-invasive treatments",
+      href: "/services/body-contouring",
+      icon: "💫"
+    },
+    {
+      title: "Facial Thread",
+      description: "Natural-looking lift and rejuvenation with thread treatments",
+      href: "/services/facial-thread",
+      icon: "🎯"
+    },
+    {
+      title: "Fillers",
+      description: "Enhance your features with premium dermal fillers",
+      href: "/services/fillers",
+      icon: "💎"
+    },
+    {
+      title: "HIFU",
+      description: "Advanced skin tightening with High-Intensity Focused Ultrasound",
+      href: "/services/hifu",
+      icon: "⚡"
+    },
+    {
+      title: "Laser Removal",
+      description: "Safe and effective laser hair and tattoo removal",
+      href: "/services/laser-removal",
+      icon: "🔆"
+    },
+    {
+      title: "PRP Facial Rejuvenation",
+      description: "Natural rejuvenation using your body's own healing factors",
+      href: "/services/prp-facial",
+      icon: "✨"
+    }
+  ];
+
   return (
     <>
-      <section className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-16 pt-24 text-center">
-        <h1 className="mx-auto max-w-4xl font-display text-5xl font-bold tracking-tight text-slate-900 sm:text-7xl dark:text-gray-200">
-          Multilingual{" "}
-          <span className="relative whitespace-nowrap text-blue-600">
-            <svg
-              aria-hidden="true"
-              viewBox="0 0 418 42"
-              className="absolute left-0 top-2/3 h-[0.58em] w-full fill-blue-300/70"
-              preserveAspectRatio="none"
-            >
-              <path d="M203.371.916c-26.013-2.078-76.686 1.963-124.73 9.946L67.3 12.749C35.421 18.062 18.2 21.766 6.004 25.934 1.244 27.561.828 27.778.874 28.61c.07 1.214.828 1.121 9.595-1.176 9.072-2.377 17.15-3.92 39.246-7.496C123.565 7.986 157.869 4.492 195.942 5.046c7.461.108 19.25 1.696 19.17 2.582-.107 1.183-7.874 4.31-25.75 10.366-21.992 7.45-35.43 12.534-36.701 13.884-2.173 2.308-.202 4.407 4.442 4.734 2.654.187 3.263.157 15.593-.78 35.401-2.686 57.944-3.488 88.365-3.143 46.327.526 75.721 2.23 130.788 7.584 19.787 1.924 20.814 1.98 24.557 1.332l.066-.011c1.201-.203 1.53-1.825.399-2.335-2.911-1.31-4.893-1.604-22.048-3.261-57.509-5.556-87.871-7.36-132.059-7.842-23.239-.254-33.617-.116-50.627.674-11.629.54-42.371 2.494-46.696 2.967-2.359.259 8.133-3.625 26.504-9.81 23.239-7.825 27.934-10.149 28.304-14.005.417-4.348-3.529-6-16.878-7.066Z"></path>
-            </svg>
-            <span className="relative"> Next.js </span>{" "}
-          </span>
-          Starter
-        </h1>
-        <p className="mx-auto mt-6 max-w-2xl text-2xl tracking-tight text-slate-700 dark:text-slate-500">
-          {t("description")}
-        </p>
+      {/* Hero Section */}
+      <section className="relative h-[90vh] flex items-center justify-center bg-gradient-to-r from-purple-50 to-pink-50 dark:from-gray-900 dark:to-gray-800">
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute inset-0 bg-gradient-to-r from-purple-500/10 to-pink-500/10 backdrop-blur-sm"></div>
+        </div>
+        <div className="relative z-10 mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6">
+            Welcome to <span className="text-purple-600 dark:text-purple-400">Urban Spa</span>
+          </h1>
+          <p className="text-xl md:text-2xl text-gray-700 dark:text-gray-300 mb-8 max-w-3xl mx-auto">
+            Etobicoke&apos;s premier destination for advanced beauty treatments and medical spa services.
+          </p>
+          <div className="flex justify-center gap-4">
+            <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700">
+              <Link href="/book">Book Appointment</Link>
+            </Button>
+            <Button asChild size="lg" variant="outline">
+              <Link href="/services">View Services</Link>
+            </Button>
+          </div>
+        </div>
       </section>
 
-      <section className="py-16">
-        <h2
-          id="who-is-using"
-          className="text-center text-3xl font-bold tracking-tight text-slate-900 dark:text-gray-200 mb-12"
-        >
-          {t("whoIsUsing")}
-        </h2>
+      {/* Services Section */}
+      <section className="py-20 bg-white dark:bg-gray-900">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-16">
+            <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">Our Services</h2>
+            <p className="text-lg text-gray-600 dark:text-gray-400">
+              Experience our comprehensive range of beauty and wellness treatments
+            </p>
+          </div>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
+            {services.map((service) => (
+              <Card key={service.title} className="group hover:shadow-lg transition-shadow duration-300">
+                <Link href={service.href} className="block p-6">
+                  <div className="text-4xl mb-4">{service.icon}</div>
+                  <h3 className="text-xl font-semibold text-gray-900 dark:text-white mb-2">
+                    {service.title}
+                  </h3>
+                  <p className="text-gray-600 dark:text-gray-400">{service.description}</p>
+                </Link>
+              </Card>
+            ))}
+          </div>
+        </div>
+      </section>
 
-        <div className="flex flex-wrap items-center justify-center gap-8">
-          {WEBSITE_LOGO_DEMO.map((website) => (
-            <a
-              key={website.name}
-              href={website.url}
-              className="flex flex-col items-center p-4 w-[160px]"
-            >
-              <WebsiteLogo url={website.url} size={36} className="mb-3" />
-              <p className="mt-3 line-clamp-2 h-[3rem] text-sm text-slate-600 dark:text-slate-400 text-center">
-                {website.name}
-              </p>
-            </a>
-          ))}
+      {/* CTA Section */}
+      <section className="py-20 bg-purple-50 dark:bg-gray-800">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-gray-900 dark:text-white mb-4">
+            Transform Your Beauty Journey
+          </h2>
+          <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl mx-auto">
+            Experience the perfect blend of luxury and advanced medical aesthetics at Urban Spa Etobicoke.
+            Book your consultation today.
+          </p>
+          <Button asChild size="lg" className="bg-purple-600 hover:bg-purple-700">
+            <Link href="/contact">Contact Us</Link>
+          </Button>
         </div>
       </section>
     </>
   );
 }
-
-const WEBSITE_LOGO_DEMO = [
-  { name: "J Blog", url: "https://weijunext.com/" },
-  { name: "OG Image Generator", url: "https://ogimage.click/" },
-  { name: "Next Idea", url: "https://nextidea.dev/" },
-  { name: "Next Idea NewTab", url: "https://newtab.nextidea.dev/" },
-  { name: "NextJS 中文文档", url: "https://nextjscn.org/" },
-];

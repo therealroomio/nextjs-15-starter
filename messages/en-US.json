@@ -1,0 +1,24 @@
+{
+  "navigation": {
+    "home": "Home",
+    "services": "Services",
+    "about": "About",
+    "contact": "Contact"
+  },
+  "services": {
+    "title": "Our Services",
+    "botox": "Botox",
+    "skinTreatment": "Skin Treatment",
+    "bodyContouring": "Body Contouring",
+    "facialThread": "Facial Thread",
+    "fillers": "Fillers",
+    "hifu": "HIFU",
+    "laserRemoval": "Laser Removal",
+    "prpFacial": "PRP Facial Rejuvenation"
+  },
+  "common": {
+    "bookNow": "Book Now",
+    "learnMore": "Learn More",
+    "contactUs": "Contact Us"
+  }
+} 

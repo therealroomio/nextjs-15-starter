@@ -1,6 +1,6 @@
-import type { Config } from "tailwindcss"
+import { type Config } from "tailwindcss"
 
-const config = {
+const config: Config = {
   darkMode: ["class"],
   content: [
     './pages/**/*.{ts,tsx}',
@@ -18,12 +18,22 @@ const config = {
       }
     },
     extend: {
+      fontFamily: {
+        playfair: ['Playfair Display', 'serif'],
+        montserrat: ['Montserrat', 'sans-serif'],
+      },
       colors: {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
         background: 'hsl(var(--background))',
         foreground: 'hsl(var(--foreground))',
+        spa: {
+          gold: 'hsl(var(--spa-gold))',
+          beige: 'hsl(var(--spa-beige))',
+          brown: 'hsl(var(--spa-brown))',
+          green: 'hsl(var(--spa-green))',
+        },
         primary: {
           DEFAULT: 'hsl(var(--primary))',
           foreground: 'hsl(var(--primary-foreground))'
@@ -86,6 +96,10 @@ const config = {
       animation: {
         'accordion-down': 'accordion-down 0.2s ease-out',
         'accordion-up': 'accordion-up 0.2s ease-out'
+      },
+      backgroundImage: {
+        'hero-pattern': 'linear-gradient(to right, rgba(255,255,255,0.9), rgba(255,255,255,0.7)), url(\'/images/hero-bg.jpg\')',
+        'service-pattern': 'linear-gradient(135deg, hsl(var(--spa-beige)) 0%, hsl(var(--spa-gold)) 100%)',
       }
     }
   },

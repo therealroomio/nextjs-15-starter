@@ -1,8 +1,8 @@
-import { TwitterX } from "@/components/social-icons/icons";
 import { siteConfig } from "@/config/site";
 import { Link as I18nLink } from "@/i18n/routing";
-import { GithubIcon, MailIcon } from "lucide-react";
+import { GithubIcon } from "lucide-react";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 import { SiBluesky } from "react-icons/si";
 
 export default function Footer() {
@@ -15,7 +15,13 @@ export default function Footer() {
             <div className="flex flex-col items-start col-span-full md:col-span-2">
               <div className="space-y-4">
                 <div className="items-center space-x-2 flex">
-                  <img src="/logo.svg" alt="Next Forge" className="w-8 h-8" />
+                  <Image
+                    src="/logo.svg"
+                    alt="Next Forge"
+                    width={32}
+                    height={32}
+                    className="w-8 h-8"
+                  />
 
                   <span className="text-white text-2xl font-bold">
                     {t("title")}
@@ -25,52 +31,28 @@ export default function Footer() {
                 <p className="text-sm p4-4 md:pr-12">{t("tagLine")}</p>
 
                 <div className="flex items-center gap-2">
-                  {siteConfig.socialLinks.github && (
+                  {siteConfig.links.facebook && (
                     <a
-                      href={siteConfig.socialLinks.github}
+                      href={siteConfig.links.facebook}
                       target="_blank"
                       rel="noreferrer nofollow noopener"
-                      aria-label="GitHub"
-                      title="View on GitHub"
+                      aria-label="Facebook"
+                      title="View on Facebook"
                       className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
                     >
                       <GithubIcon className="size-4" aria-hidden="true" />
                     </a>
                   )}
-                  {siteConfig.socialLinks.bluesky && (
+                  {siteConfig.links.instagram && (
                     <a
-                      href={siteConfig.socialLinks.bluesky}
+                      href={siteConfig.links.instagram}
                       target="_blank"
                       rel="noreferrer nofollow noopener"
-                      aria-label="Blue Sky"
-                      title="View on Bluesky"
+                      aria-label="Instagram"
+                      title="View on Instagram"
                       className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
                     >
                       <SiBluesky className="w-4 h-4" aria-hidden="true" />
-                    </a>
-                  )}
-                  {siteConfig.socialLinks.twitter && (
-                    <a
-                      href={siteConfig.socialLinks.twitter}
-                      target="_blank"
-                      rel="noreferrer nofollow noopener"
-                      aria-label="Twitter"
-                      title="View on Twitter"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <TwitterX className="w-4 h-4" aria-hidden="true" />
-                    </a>
-                  )}
-                  {siteConfig.socialLinks.email && (
-                    <a
-                      href={`mailto:${siteConfig.socialLinks.email}`}
-                      target="_blank"
-                      rel="noreferrer nofollow noopener"
-                      aria-label="Email"
-                      title="Email"
-                      className="inline-flex h-8 w-8 items-center justify-center rounded-md hover:bg-accent hover:text-accent-foreground"
-                    >
-                      <MailIcon className="w-4 h-4" />
                     </a>
                   )}
                 </div>
